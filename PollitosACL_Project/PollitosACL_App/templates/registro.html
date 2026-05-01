@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Pollitos S.A</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: #f2f2f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            display: flex;
+            width: 850px;
+            height: 550px;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .left {
+            flex: 1;
+            background-color: #ffb300;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .left h1 {
+            font-size: 2.3em;
+            margin-bottom: 10px;
+        }
+
+        .left p {
+            font-size: 1em;
+            margin-bottom: 30px;
+        }
+
+        .left a {
+            background: white;
+            color: #ffb300;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .left a:hover {
+            background: #ffe082;
+            color: #000;
+        }
+
+        .right {
+            flex: 1;
+            background: white;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form p {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        select {
+            padding: 12px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 1em;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <h1>Bienvenido a</h1>
+            <h1>Pollitos S.A 🐥</h1>
+            <p>¿Ya tienes cuenta?</p>
+            <a href="{% url 'login' %}">INICIAR SESIÓN</a>
+        </div>
+
+        <div class="right">
+            <h2>Crear usuario</h2>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {% for field in form %}
+                    <p>
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <span style="color: red;">{{ field.errors|striptags }}</span>
+                        {% endif %}
+                    </p>
+                {% endfor %}
+                <button type="submit">REGISTRAR</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

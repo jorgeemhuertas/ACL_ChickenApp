@@ -1,0 +1,28 @@
+# Entorno virtual
+venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Base de datos
+db.sqlite3
+
+# Variables de entorno
+.env
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Archivos estáticos compilados (opcional)
+staticfiles/
+
+# Migraciones (opcional, depende del proyecto)
+# */migrations/*
+# !*/migrations/__init__.py 
